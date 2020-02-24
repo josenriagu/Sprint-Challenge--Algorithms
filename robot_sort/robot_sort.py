@@ -97,7 +97,77 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        '''
+        PSEUDOCODE
+        Utilizing bi-directional bubble sort
+
+        - IF ever light is on, means there was a swap. turn it off to check again
+        
+        *** BUBBLE MAX TO RIGHT ***
+
+        - while it can move right:
+            - pick item (since it has 'None') and advance
+            - compare and if item is larger than the current position, swap and turn on light
+            - go back left, drop the lower item (or currently held item, if no swap) and continue right
+        
+        - IF after right advancement, light is off, means no swap happened, return the list
+        
+        - ELSE, light is on, turn light off and start the reverse process
+        
+        *** BUBBLE MIN TO LEFT *** ( reverse of right)
+        
+        - move left first, to avoid picking already maxed value at list end (or its equiv index)
+
+        - WHILE it can move to the left
+            - pick item (since it has 'None' again) and advance
+            - compare and if item is smaller than the current position, swap and turn on light
+            - go back right, drop the larger item or (or currently held item, if no swap) and continue left
+
+        - IF after left reverse, light is off, means no swap happened, return the list
+        '''
+        while True:
+            
+            if self.light_is_on():
+                self.set_light_off()
+            
+            # Bubble max to right
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right()
+
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+
+                self.move_left()
+                self.swap_item()
+
+                self.move_right()
+            # right swap checker
+            if not self.light_is_on():
+                return
+
+            else:
+                self.set_light_off()
+            
+            # Bubble min to left while returning
+            self.move_left()
+
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+
+                if self.compare_item() == -1:
+                    self.swap_item()
+                    self.set_light_on()
+
+                self.move_right()
+                self.swap_item()
+
+                self.move_left()
+            # left swap checker
+            if not self.light_is_on():
+                return
 
 
 if __name__ == "__main__":

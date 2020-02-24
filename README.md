@@ -91,7 +91,18 @@ Inside the `robot_sort` directory you'll find the `robot_sort.py` file. Open it 
 
 * We discussed a sorting method this week that might be useful. Which one?
 
+```
+Bubble Sort:
+
+Because since we are considering time and for each move, the robot's time is inncreased, it is necessary that we bubble higher numbers until they gets to the end (or at their right indices)
+To further optimize time, rather than loop in one direction, we may revere the code to also bubble lower numbers while it returns to its original position of 0
+This creates some sort of bi-directional bubbling effect
+```
+
 * The robot has exactly one bit of memory: its light. Why is this important?
+```
+So that the runtime will be linear, as it doesn't get to store a lot of information other than the item it is currently holding
+```
 
 Run `python test_robot.py` to run the tests for your `robot_sort()` function to ensure that your implementation is correct.
 
